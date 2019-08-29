@@ -30,6 +30,19 @@ class ProjectsTest extends TestCase
         // should be able to see it
         $this->get('/projects')->assertSee($attributes['title']);
 
+    } 
+
+    /** @test */
+    public function a_user_can_view_a_project() {
+
+        $this->withoutExceptionHandling();
+
+        $project = factory('App\Project')->create(); // given a project exists in the database
+
+        $this->get($project->path())
+            ->assertSee($project->title)
+            ->assertSee($project->description);
+
     }
 
     /** @test */
