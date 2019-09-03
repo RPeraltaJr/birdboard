@@ -13,13 +13,32 @@ class ProjectsTest extends TestCase
     use WithFaker, RefreshDatabase; 
 
     /** @test */
-    public function only_authenticated_users_can_create_projects() {
+    public function guests_cannot_create_projects() {
 
         // $this->withoutExceptionHandling();
 
         $attributes = factory('App\Project')->raw(); // create project (raw returns array)
         
         $this->post('/projects', $attributes)->assertRedirect('login');
+
+    }
+
+    /** @test */
+    public function guests_cannot_view_projects() {
+
+        // $this->withoutExceptionHandling();
+        
+        $this->post('/projects')->assertRedirect('login');
+
+    }
+
+    /** @test */
+    public function guests_cannot_view_a_single_project() {
+
+        // $this->withoutExceptionHandling();
+        $project = factory('App\Project')->create();
+        
+        $this->get($project->path())->assertRedirect('login');
 
     }
 
@@ -46,15 +65,29 @@ class ProjectsTest extends TestCase
     } 
 
     /** @test */
-    public function a_user_can_view_a_project() {
+    public function a_user_can_view_their_project() {
 
-        $this->withoutExceptionHandling();
+        $this->be(factory('App\User')->create()); // create auth user
+        // $this->withoutExceptionHandling();
 
-        $project = factory('App\Project')->create(); // given a project exists in the database
+        $project = factory('App\Project')->create(['owner_id' => auth()->id()]);
 
         $this->get($project->path())
             ->assertSee($project->title)
             ->assertSee($project->description);
+
+    }
+
+    /** @test */
+    public function an_authenticated_user_cannot_view_the_projects_of_others() {
+
+        $this->be(factory('App\User')->create()); // create auth user
+        // $this->withoutExceptionHandling();
+
+        $project = factory('App\Project')->create(); 
+
+        // try visiting the page
+        $this->get($project->path())->assertStatus(403);
 
     }
 
@@ -66,7 +99,7 @@ class ProjectsTest extends TestCase
         $this->post('/projects', $attributes)->assertSessionHasErrors('title');
 
     }
-
+ 
     /** @test */
     public function a_project_requires_a_description() {
 
