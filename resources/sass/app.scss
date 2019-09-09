@@ -1,13 +1,17 @@
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
-
 // Tailwind
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+@import "tailwind_overrides";
 
 // Variables
-@import 'variables';
+@import "colors";
+@import "typography";
+@import "nav";
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+// @import '~bootstrap/scss/bootstrap';
+
+body { 
+    background: $grey-light;
+}
