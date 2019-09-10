@@ -3,13 +3,15 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 @import "tailwind_overrides";
-
+ 
 // Variables
 @import "colors";
 @import "typography";
 @import "nav";
 @import "buttons";
 @import "base";
+
+@import "components/card";
 
 // Bootstrap
 // @import '~bootstrap/scss/bootstrap';
