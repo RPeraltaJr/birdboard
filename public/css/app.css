@@ -11369,8 +11369,37 @@ video {
   box-shadow: 0 0.5px 0 rgba(0, 0, 0, 0.08) !important;
 }
 
+.bg-blue, .button {
+  background: #47cdff;
+}
+
+.border-blue {
+  border-color: #47cdff;
+}
+
+.button {
+  text-decoration: none;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 7px 0 #b0eaff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+*,
+html,
+body {
+  text-rendering: optimizeLegibility;
+}
+
 body {
   background: #f5f6f9;
+  font-family: "Roboto Slab", sans-serif;
 }
 
 @media (min-width: 640px) {

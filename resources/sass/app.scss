@@ -8,10 +8,8 @@
 @import "colors";
 @import "typography";
 @import "nav";
+@import "buttons";
+@import "base";
 
 // Bootstrap
 // @import '~bootstrap/scss/bootstrap';
-
-body { 
-    background: $grey-light;
-}

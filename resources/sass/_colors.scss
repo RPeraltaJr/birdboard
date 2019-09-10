@@ -1,12 +1,17 @@
-// Colors
-$blue: #3490dc;
-$indigo: #6574cd;
-$purple: #9561e2;
-$pink: #f66d9b;
-$red: #e3342f;
-$orange: #f6993f;
-$yellow: #ffed4a;
-$green: #38c172;
-$teal: #4dc0b5;
-$cyan: #6cb2eb;
+// * Vars
+$blue: #47cdff;
 $grey-light: #f5f6f9;
+
+// * Background
+.bg {
+    &-blue {
+        background: $blue;
+    }
+}
+
+// * Borders
+.border {
+    &-blue {
+        border-color: $blue;
+    }
+}
