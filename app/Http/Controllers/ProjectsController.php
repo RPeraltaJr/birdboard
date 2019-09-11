@@ -12,7 +12,7 @@ class ProjectsController extends Controller
         // $projects = $project->all();
 
         // * users can only see their projects
-        $projects = auth()->user()->projects; 
+        $projects = auth()->user()->projects;
         return view('projects.index', compact('projects'));
 
     }
