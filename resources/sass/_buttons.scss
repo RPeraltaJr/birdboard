@@ -4,4 +4,7 @@
     border-radius: 0.5rem; 
     box-shadow: 0 2px 7px 0 #b0eaff;
     @apply .text-white .no-underline .rounded-lg .text-sm .py-2 .px-5; 
+    min-width: 120px;
+    font-family: $secondary-font;
+    font-weight: 300;
 }

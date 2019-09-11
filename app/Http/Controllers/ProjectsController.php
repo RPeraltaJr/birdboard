@@ -39,13 +39,36 @@ class ProjectsController extends Controller
         $attributes = request()->validate([
             'title'         => 'required', 
             'description'   => 'required',
+            'notes'         => 'min:3'
         ]);
 
+        // * Option #1
         // $attributes['owner_id'] = auth()->id();
         // $project->create($attributes);
+        
+        // * Option #2
         $project = auth()->user()->projects()->create($attributes);
 
         // redirect
         return redirect($project->path());
+    }
+
+    public function update(Project $project) {
+
+        // * Option #1
+        // if( auth()->user()->isNot($project->owner) ) {
+        //     abort(403);
+        // }
+
+        // * Option #2 (after creating a ProjectPolicy.php)
+        $this->authorize('update', $project);
+ 
+        $project->update([
+            'notes' => request('notes')
+        ]);
+
+        // redirect
+        return redirect($project->path());
+        
     }
 }

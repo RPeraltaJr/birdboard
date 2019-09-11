@@ -8,8 +8,10 @@ class Task extends Model
 {
     protected $guarded = [];
 
-    // * Touches any belongTo relationship (in this case the parent: Project)
-    // * updated_at column will also update for parent Project
+    /*
+        * Touches any belongTo relationship (in this case the parent: Project)
+        * updated_at column will also update for parent Project
+    */
     protected $touches = ['project']; 
 
     public function project() {
