@@ -28,7 +28,7 @@ class ManageProjectsTest extends TestCase
     /** @test */
     public function a_user_can_create_a_project() {
 
-        // $this->withoutExceptionHandling();
+        $this->withoutExceptionHandling();
 
         $this->signIn(); // create auth user
 
@@ -39,7 +39,7 @@ class ManageProjectsTest extends TestCase
             'description'   => $this->faker->paragraph
         ];
 
-        $this->post('/projects', $attributes)->assertRedirect('/projects');
+        $this->post('/projects', $attributes);
 
         // should be able to post to database
         $this->assertDatabaseHas('projects', $attributes);
@@ -60,7 +60,7 @@ class ManageProjectsTest extends TestCase
         // * Note: description is truncated in $project->path() so we apply same method for testing (str_limit())
         $this->get($project->path())
             ->assertSee($project->title)
-            ->assertSee(str_limit($project->description,100));
+            ->assertSee(str_limit($project->description, 100));
 
     }
 
