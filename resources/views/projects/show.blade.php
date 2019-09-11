@@ -16,21 +16,26 @@
 
             <div class="lg:w-3/4 px-3 mb-6">
 
-                @if( count($project->tasks) > 0 )
-                    <div class="mb-8">
-                        <h2 class="text-lg text-gray-500 font-normal mb-3">Tasks</h2>
+                <div class="mb-8">
+                    <h2 class="text-lg text-gray-500 font-normal mb-3">Tasks</h2>
 
-                        {{-- tasks --}}
-                        @foreach ($project->tasks as $task)
-                            <div class="card mb-3">{{ $task->body }}</div>
-                        @endforeach
+                    <!-- Tasks -->
+                    @foreach($project->tasks as $task)
+                        <div class="card mb-3">{{ $task->body }}</div>    
+                    @endforeach
+
+                    <div class="card mb-3">
+                        <form action="{{ $project->path() . '/tasks' }}" method="POST">
+                            @csrf
+                            <input class="w-full" type="text" name="body" placeholder="Add a new task...">
+                        </form>
                     </div>
-                @endif
+                </div>
 
                 <div class="mb-8">
                     <h2 class="text-lg text-gray-500 font-normal mb-3">General Notes</h2>
 
-                    {{-- general notes --}}
+                    <!-- General Notes -->
                     <textarea class="card w-full" style="min-height: 200px">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero nesciunt in enim. Eligendi adipisci labore qui, facilis aperiam quod ipsum dolore, fugit ab totam reprehenderit voluptatum in corrupti aliquam vel.</textarea>
                 </div>
             </div>
